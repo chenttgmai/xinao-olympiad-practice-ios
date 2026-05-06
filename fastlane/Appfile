@@ -1,0 +1,5 @@
+app_identifier("macbookair31f.------------------")
+apple_id("6766872256")
+team_id("2DSDFHC6KN")
+
+itc_team_id(ENV["APP_STORE_CONNECT_TEAM_ID"]) if ENV["APP_STORE_CONNECT_TEAM_ID"].to_s.length > 0
