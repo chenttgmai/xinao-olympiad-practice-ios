@@ -23,6 +23,30 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 Upload App Store metadata, privacy URL, support URL, and app info fields
 
+### ios review_fields
+
+```sh
+[bundle exec] fastlane ios review_fields
+```
+
+Repair required App Store review fields without submitting for review
+
+### ios price_cny1
+
+```sh
+[bundle exec] fastlane ios price_cny1
+```
+
+Set App Store price to CNY 1 using the current App Store Connect price schedule API
+
+### ios upprivacy
+
+```sh
+[bundle exec] fastlane ios upprivacy
+```
+
+Upload App Privacy answer: Data Not Collected
+
 ### ios uppic
 
 ```sh
