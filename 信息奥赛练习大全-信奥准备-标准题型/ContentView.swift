@@ -3,34 +3,84 @@ import Foundation
 import SwiftUI
 
 struct ContentView: View {
+    @State private var selectedTab: AppTab
+
+    init() {
+        ScreenshotMode.prepareDefaultsIfNeeded()
+        _selectedTab = State(initialValue: ScreenshotMode.initialTab)
+    }
+
     var body: some View {
-        TabView {
+        TabView(selection: $selectedTab) {
             DashboardView()
                 .tabItem {
                     Label("今日", systemImage: "calendar.badge.clock")
                 }
+                .tag(AppTab.dashboard)
 
             PracticeView()
                 .tabItem {
                     Label("练题", systemImage: "checklist.checked")
                 }
+                .tag(AppTab.practice)
 
             ReviewView()
                 .tabItem {
                     Label("复盘", systemImage: "chart.line.uptrend.xyaxis")
                 }
+                .tag(AppTab.review)
 
             ReferenceView()
                 .tabItem {
                     Label("资料", systemImage: "books.vertical")
                 }
+                .tag(AppTab.reference)
 
             PitfallView()
                 .tabItem {
                     Label("避坑", systemImage: "exclamationmark.triangle")
                 }
+                .tag(AppTab.pitfall)
         }
         .tint(.blue)
+        .statusBarHidden(ScreenshotMode.isEnabled)
+    }
+}
+
+private enum AppTab: String {
+    case dashboard
+    case practice
+    case review
+    case reference
+    case pitfall
+}
+
+private enum ScreenshotMode {
+    static var isEnabled: Bool {
+        UserDefaults.standard.bool(forKey: "FASTLANE_SNAPSHOT")
+            || UserDefaults.standard.bool(forKey: "ScreenshotMode")
+    }
+
+    static var initialTab: AppTab {
+        guard isEnabled,
+              let rawValue = UserDefaults.standard.string(forKey: "ScreenshotTab"),
+              let tab = AppTab(rawValue: rawValue)
+        else {
+            return .dashboard
+        }
+        return tab
+    }
+
+    static func prepareDefaultsIfNeeded() {
+        guard isEnabled else { return }
+
+        let defaults = UserDefaults.standard
+        defaults.set("sim-001,math-001,search-001,dp-001", forKey: "completedProblemIDs")
+        defaults.set("dp-001,string-001", forKey: "starredProblemIDs")
+        defaults.set(
+            "二分先写清楚边界含义；图论题先确认是否有重边、自环和连通性。",
+            forKey: "problemNote-dp-001"
+        )
     }
 }
 
