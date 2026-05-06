@@ -48,12 +48,13 @@
 
 ## 隐私政策与支持 URL
 
-当前仓库没有配置公开 GitHub remote，所以还不能生成可直接填写的线上 URL。可以先把 `docs/privacy.html` 和 `docs/support.html` 部署到 GitHub Pages，再填写：
+已创建公开 GitHub Pages 仓库：
 
-- 隐私政策 URL：`https://<你的 GitHub 用户名>.github.io/<隐私页面仓库>/privacy.html`
-- 支持 URL：`https://<你的 GitHub 用户名>.github.io/<隐私页面仓库>/support.html`
+- GitHub 仓库：`https://github.com/chenttgmai/xinao-app-support`
+- 隐私政策 URL：`https://chenttgmai.github.io/xinao-app-support/privacy.html`
+- 支持 URL：`https://chenttgmai.github.io/xinao-app-support/support.html`
 
-部署后再把这两个 URL 写入：
+这两个 URL 已写入：
 
 - `fastlane/metadata/zh-Hans/privacy_url.txt`
 - `fastlane/metadata/zh-Hans/support_url.txt`
